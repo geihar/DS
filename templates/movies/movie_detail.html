@@ -33,7 +33,7 @@
                         <span><b>{% trans 'Режиссер' %}:</b>
                             {% for director in movie.director.all %}
                                 <a href="{{ director.get_absolute_url }}">
-                                    {{ director.name }}&nbsp
+                                    {{ director.name }}
                                 </a>
                             {% endfor %}
                         </span>
@@ -41,7 +41,7 @@
                     <li style="list-style: none"><span><b>{% trans 'Актеры' %}:</b>
                         {% for actor in movie.actor.all %}
                             <a href="{{ actor.get_absolute_url }}">
-                                    {{ actor.name }}&nbsp
+                                    {{ actor.name }}
                             </a>
                         {% endfor %}
                                 </span>
@@ -62,7 +62,7 @@
                     <li>
                         <span><b>{% trans 'Сборы в мире' %}:</b> ${{ movie.fees_in_world }}</span>
                     </li>
-{#                    <li>#}
+                    <li>
 {#                        <form action="{% url 'add_rating' %}" method="post" name="rating">#}
 {#                            <b>{% trans 'Рейтинг' %}:</b>#}
 {#                            {% csrf_token %}#}
@@ -76,7 +76,7 @@
 {#                            </span>#}
 {#                            <span class="editContent">4.0</span>#}
 {#                        </form>#}
-{#                    </li>#}
+                    </li>
                 </ul>
 
                 <div class="share-desc">
@@ -111,7 +111,7 @@
                 {% trans 'О фильме'  %} {{ movie.title }}
             </h3>
             <p>
-                {% for image in movie.moviesshots_set.all %}
+                {% for image in movie.movieshots_set.all %}
                     <img src="{{ image.image.url }}" class="img-movie-shots "
                          alt="{{ image.description }}">
                 {% endfor %}
@@ -129,7 +129,7 @@
                         <span class="sub-tittle editContent">{{ movie.reviews_set.count }}</span>
                         {% trans 'Оставить отзыв ' %}
                     </h3>
-                     <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4"
+                    <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4"
                           id="formReview">
                         {% csrf_token %}
                         <input type="hidden" name="parent" id="contactparent" value="">
@@ -137,8 +137,7 @@
                             <label for="contactcomment" class="editContent">
                                 Ваш комментарий *
                             </label>
-{#                            {{ form.text }}#}
-                            <textarea class="form-control border" row="5" name="text"></textarea>
+                            {{ form.text }}
                         </div>
                         <div class="d-sm-flex">
                             <div class="col-sm-6 form-group p-0 editContent">
@@ -200,4 +199,3 @@
 
     </script>
 {% endblock movie %}
-s
