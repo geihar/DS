@@ -28,7 +28,7 @@
 <body>
 <div id="page" class="page">
     <div class="main-banner bg {% block header %}  {% endblock header %}" id="home">
-        {% include   'include/header.html' %}
+        {% include 'include/header.html' %}
     </div>
     <ol class="breadcrumb editContent">
         <li class="breadcrumb-item">
@@ -41,5 +41,7 @@
     {% endblock content %}
     {% include 'include/footer.html' %}
 </div>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
 </body>
 </html>

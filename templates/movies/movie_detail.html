@@ -63,19 +63,19 @@
                         <span><b>{% trans 'Сборы в мире' %}:</b> ${{ movie.fees_in_world }}</span>
                     </li>
                     <li>
-{#                        <form action="{% url 'add_rating' %}" method="post" name="rating">#}
-{#                            <b>{% trans 'Рейтинг' %}:</b>#}
-{#                            {% csrf_token %}#}
-{#                            <input type="hidden" value="{{ movie.id }}" name="movie">#}
-{#                            <span class="rating">#}
-{#                                {% for k, v in star_form.fields.star.choices %}#}
-{#                                    <input id="rating{{ v }}" type="radio" name="star"#}
-{#                                           value="{{ k }}">#}
-{#                                    <label for="rating{{ v }}">{{ k }}</label>#}
-{#                                {% endfor %}#}
-{#                            </span>#}
-{#                            <span class="editContent">4.0</span>#}
-{#                        </form>#}
+                        <form action="{% url 'add_rating' %}" method="post" name="rating">
+                            <b>{% trans 'Рейтинг' %}:</b>
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ movie.id }}" name="movie">
+                            <span class="rating">
+                                {% for k, v in star_form.fields.star.choices %}
+                                    <input id="rating{{ v }}" type="radio" name="star"
+                                           value="{{ k }}">
+                                    <label for="rating{{ v }}">{{ k }}</label>
+                                {% endfor %}
+                            </span>
+                            <span class="editContent">4.0</span>
+                        </form>
                     </li>
                 </ul>
 
