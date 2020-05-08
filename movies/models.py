@@ -32,7 +32,6 @@ class Actor(models.Model):
         verbose_name_plural = 'Актеры и Режисеры'
 
 
-
 class Genre(models.Model):
     name = models.CharField('Имя', max_length=120)
     description = models.TextField('Описание')

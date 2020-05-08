@@ -13,6 +13,7 @@ class MovieAdminForm(forms.ModelForm):
         model = Movie
         fields ='__all__'
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'url')
@@ -23,6 +24,7 @@ class ReviewInline(admin.TabularInline):
     model = Reviews
     extra = 1
     readonly_fields = ('name', 'email')
+
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
@@ -48,10 +50,10 @@ class MovieAdmin(admin.ModelAdmin):
         }),
         ("Actors", {
             "classes": ("collapse",),
-            "fields": (("actors", "directors", "genres", "category"),)
+            "fields": (("actor", "director", "genres", "category"),)
         }),
         (None, {
-            "fields": (("budget", "fees_in_usa", "fess_in_world"),)
+            "fields": (("budget", "fees_in_usa", "fees_in_world"),)
         }),
         ("Options", {
             "fields": (("url", "draft"),)
@@ -112,7 +114,7 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     """Рейтинг"""
-    list_display = ("star", "ip")
+    list_display = ("star", "ip", "movie")
 
 
 @admin.register(MoviesShots)
