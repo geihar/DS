@@ -9,6 +9,7 @@ verify_ssl = true
 django = "==3.0.3"
 pillow = "*"
 django-ckeditor = "*"
+django-recaptcha3 = "*"
 
 [requires]
 python_version = "3.8"

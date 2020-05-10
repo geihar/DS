@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-{% load static %}
+</html><!DOCTYPE html>
+{% load static recaptcha3 %}
 <html lang="ru">
 <head>
     <!-- //Meta tag Keywords -->
@@ -23,7 +23,8 @@
           rel="stylesheet">
     <!-- //Fonts -->
 
-
+      {% recaptcha_init %}
+      {% recaptcha_ready action_name='homepage' %}
 </head>
 <body>
 <div id="page" class="page">
@@ -39,7 +40,6 @@
     {% block content %}
 
     {% endblock content %}
-    {% include 'include/pagination.html' %}
     {% include 'include/footer.html' %}
 </div>
 <script src="{% static 'js/scripts.js' %}"></script>

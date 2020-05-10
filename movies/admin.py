@@ -1,9 +1,9 @@
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from .models import Category, Actor, RatingStars, Rating, Movie, MoviesShots, Genre, Reviews
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class MovieAdminForm(forms.ModelForm):
@@ -26,12 +26,23 @@ class ReviewInline(admin.TabularInline):
     readonly_fields = ('name', 'email')
 
 
+class MoviesShotsInline(admin.TabularInline):
+    model = MoviesShots
+    extra = 1
+    readonly_fields = ("get_image",)
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src={obj.image.url} width="100" height="110"')
+
+    get_image.short_description = "Изображение"
+
+
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'url', 'draft')
     list_filter = ('category', 'year')
     search_fields = ('title', 'category__name')
-    inlines = [ReviewInline]
+    inlines = [MoviesShotsInline, ReviewInline]
     save_on_top = True
     save_as = True
     list_editable = ('draft',)
@@ -107,19 +118,16 @@ class ActorAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
-    """Жанры"""
     list_display = ("name", "url")
 
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    """Рейтинг"""
-    list_display = ("star", "ip", "movie")
+    list_display = ("ip", "star", "movie")
 
 
 @admin.register(MoviesShots)
 class MovieShotsAdmin(admin.ModelAdmin):
-    """Кадры из фильма"""
     list_display = ("name", "movie", "get_image")
     readonly_fields = ("get_image",)
 
