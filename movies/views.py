@@ -37,11 +37,12 @@ class MovieDetailView(GenreYear, DetailView):
 
 
 class AddReview(View):
+
     def post(self, request, pk):
         form = ReviewForm(request.POST)
         movie = Movie.objects.get(id=pk)
         if form.is_valid():
-            form.save(commit=False)
+            form = form.save(commit=False)
             if request.POST.get('parent', None):
                 form.parent_id = int(request.POST.get('parent'))
             form.movie = movie
