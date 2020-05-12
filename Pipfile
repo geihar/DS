@@ -12,6 +12,8 @@ django-ckeditor = "*"
 django-recaptcha3 = "*"
 django-modeltranslation = "*"
 django-allauth = "*"
+djangorestframework = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"

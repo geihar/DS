@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'snowpenguin.django.recaptcha3',
     'allauth',
-    'allauth.account'
+    'allauth.account',
+    'rest_framework'
 
 ]
 
@@ -123,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -136,7 +137,12 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL ='/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER ='******'
+EMAIL_HOST_PASSWORD ='******'
 
 
 gettext = lambda s: s
@@ -237,3 +243,15 @@ RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
 
 SITE_ID = 1
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
+try:
+    from .local_settings import*
+except ImportError:
+    print("local_settings is not defined")
