@@ -11,6 +11,7 @@ pillow = "*"
 django-ckeditor = "*"
 django-recaptcha3 = "*"
 django-modeltranslation = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.8"
