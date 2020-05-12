@@ -10,6 +10,7 @@ django = "==3.0.3"
 pillow = "*"
 django-ckeditor = "*"
 django-recaptcha3 = "*"
+django-modeltranslation = "*"
 
 [requires]
 python_version = "3.8"
