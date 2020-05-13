@@ -164,33 +164,38 @@
             </div>
         </div>
         {% for review in movie.get_review %}
-            <div class="media py-5">
-                <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
-                <div class="media-body mt-4">
-                    <h5 class="mt-0 editContent">
-                        {{ review.name }}
-                    </h5>
-                    <p class="mt-2 editContent">
-                        {{ review.text }}
-                    </p>
-                    <a href="#formReview"
-                       onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
-                    {% for rew in review.reviews_set.all %}
-                        <div class="media mt-5 editContent">
-                            <a class="pr-3" href="#">
-                                <img src="{% static 'images/te2.jpg' %}" class="img-fluid "
-                                     alt="image">
-                            </a>
-                            <div class="media-body">
-                                <h5 class="mt-0 editContent">{{ rew.name }}</h5>
-                                <p class="mt-2 editContent">{{ rew.text }}</p>
+            {% if  not review.parent %}
+                <div class="media py-5">
+                    <img src="{% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image">
+                    <div class="media-body mt-4">
+                        <h5 class="mt-0 editContent">
+                            {{ review.name }}
+                        </h5>
+                        <p class="mt-2 editContent">
+                            {{ review.text }}
+                        </p>
+                        <a href="#formReview"
+                           onclick="addReview('{{ review.name }}', '{{ review.id }}')">Ответить</a>
+                        {% for rew in movie.get_review %}
+                            {% if rew.parent ==  review %}
+                            <div class="media mt-5 editContent">
+                                <a class="pr-3" href="#">
+                                    <img src="{% static 'images/te2.jpg' %}" class="img-fluid "
+                                         alt="image">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 editContent">{{ rew.name }}</h5>
+                                    <p class="mt-2 editContent">{{ rew.text }}</p>
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         {% endfor %}
     </div>
+
     <script>
         function addReview(name, id) {
             document.getElementById("contactparent").value = id;

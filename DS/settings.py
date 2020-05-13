@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'snowpenguin.django.recaptcha3',
     'allauth',
     'allauth.account',
-    'rest_framework'
+    'rest_framework',
+    'django_filters '
 
 ]
 
@@ -245,11 +246,15 @@ RECAPTCHA_SCORE_THRESHOLD = 0.5
 SITE_ID = 1
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ]
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFiltersBackends',
+    )
+
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    # ]
+}
 
 try:
     from .local_settings import*
