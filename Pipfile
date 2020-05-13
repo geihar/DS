@@ -15,6 +15,7 @@ django-allauth = "*"
 djangorestframework = "*"
 psycopg2 = "*"
 django-filter = "*"
+djoser = "*"
 
 [requires]
 python_version = "3.8"

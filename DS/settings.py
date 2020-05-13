@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_framework',
-    'django_filters '
+    'django_filters'
 
 ]
 
@@ -248,7 +248,7 @@ SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFiltersBackends',
+        'django_filters.rest_framework.DjangoFilterBackend',
     )
 
     # 'DEFAULT_PERMISSION_CLASSES': [
