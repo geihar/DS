@@ -16,6 +16,8 @@ djangorestframework = "*"
 psycopg2 = "*"
 django-filter = "*"
 djoser = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
 
 [requires]
 python_version = "3.8"

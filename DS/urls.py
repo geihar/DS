@@ -31,6 +31,9 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('api-auth/', include('rest_framework.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
     path('api/v1/', include('movies.api.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('acounts/', include('allauth.urls')),

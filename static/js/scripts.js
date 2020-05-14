@@ -73,3 +73,7 @@ rating.addEventListener("change", function (e) {
         .then(response => alert("Рейтинг установлен"))
         .catch(error => alert("Ошибка"))
 });
+
+function change(data) {
+// Дописать функцию onChange на языки
+}
