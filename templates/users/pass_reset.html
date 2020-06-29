@@ -1,0 +1,14 @@
+{% extends 'movies/base.html' %}
+{%  load crispy_forms_tags %}
+{% block movie %}
+  <div class="form-section">
+    <h2>Востановление пароля</h2>
+      <form method="POST">
+          {% csrf_token %}
+          {{ form| crispy }}
+          <button type="submit" class="btn btn-danger">Получить новый пароль</button>
+      </form>
+
+  
+  </div>
+{% endblock movie%}

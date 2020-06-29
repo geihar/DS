@@ -74,6 +74,7 @@ rating.addEventListener("change", function (e) {
         .catch(error => alert("Ошибка"))
 });
 
-function change(data) {
-// Дописать функцию onChange на языки
+function ChangeLang(data) {
+        document.getElementById('language_form').submit();
+
 }

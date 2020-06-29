@@ -4,9 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+django-debug-toolbar = "*"
 
 [packages]
-django = "==3.0.3"
+django = "==3.0.7"
 pillow = "*"
 django-ckeditor = "*"
 django-recaptcha3 = "*"
@@ -18,6 +19,7 @@ django-filter = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 drf-yasg = "*"
+django-crispy-forms = "*"
 
 [requires]
 python_version = "3.8"

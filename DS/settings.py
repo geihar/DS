@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'django_filters',
     'djoser',
     'drf_yasg',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'users',
+    'debug_toolbar',
+    'crispy_forms',
 
 ]
 
@@ -66,7 +69,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
 ]
 
 ROOT_URLCONF = 'DS.urls'
@@ -96,8 +101,12 @@ WSGI_APPLICATION = 'DS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'movie',
+        'USER': 'movie',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',
+        'PORT': '5433',
     }
 }
 
@@ -300,7 +309,16 @@ DJOSER = {
 }
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'main_page'
+
+LOGIN_URL = "log"
+
+
 try:
     from .local_settings import*
 except ImportError:
     print("local_settings is not defined")
+
+

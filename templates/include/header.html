@@ -4,15 +4,15 @@
         <!-- nav -->
         <nav class="py-4">
             <div id="logo">
-                <h1><a href="index.html" class="editContent"
-                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;, sans-serif;">DjangoMovie</a>
+                <h1><a href="{% url 'main_page' %}" class="editContent"
+                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;, sans-serif;">Movie Guide</a>
                 </h1>
             </div>
 
             <label for="drop" class="toggle">Menu</label>
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
-                <li class="active"><a href="index.html">Главная</a></li>
+                <li class="active"><a href="{% url 'main_page' %}">Главная</a></li>
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-2" class="toggle">Категории <span
@@ -29,38 +29,38 @@
                 </li>
                 <li>
                     {% if user.is_authenticated %}
-                        <span>{{ user.username }}</span>
-                        <a href="{% url 'account_logout' %}"
+
+                        <a href="{% url 'profile' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Выход
-                        </a>
+                            Профиль</a>
+                        <a href="{% url 'exit' %}"
+                           style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                            Выйти</a>
                     {% else %}
-                        <a href="{% url 'account_login' %}"
+                        <a href="{% url 'reg' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Вход
-                        </a>
-                         <a href="{% url 'account_signup' %}"
+                            Регистрация</a>
+                        <a href="{% url 'log' %}"
                            style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Регистрация
-                        </a>
+                            Войти</a>
+                                                <span>{{ user.username }}</span>
                     {% endif %}
                 </li>
 
                 <li>
-                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <form id="language_form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select name="language">
+                        <select name="language"  onchange='ChangeLang()'>
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
                                 <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                        selected{% endif %}>
+                                        selected{% endif %} >
                                     {{ language.name_local }} ({{ language.code }})
                                 </option>
                             {% endfor %}
                         </select>
-                        <input type="submit" value="Go">
                     </form>
                 </li>
             </ul>
@@ -71,7 +71,7 @@
 <!-- //header -->
 <!--/banner-->
 <div class="banner-info">
-    <p class="editContent">лучший сайт на django 3</p>
+    <p class="editContent">Самые свежие новинки киноиндустрии</p>
     <h3 class="mb-4 editContent">Все о кино</h3>
     <div class="ban-buttons">
 

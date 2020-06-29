@@ -1,0 +1,9 @@
+{% extends 'movies/base.html' %}
+{%  load crispy_forms_tags %}
+{% block movie %}
+  <div class="form-section">
+    <h2>Вы вышли из аккаунта</h2>
+  <a href="{% url 'log' %}">Войти в личный кабинет</a>
+
+  </div>
+{% endblock movie%}
