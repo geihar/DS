@@ -1742,3 +1742,7 @@ body{
     margin-right: 10px;
     margin-left: 20px;
 }
+#id_text{
+    max-height: 250px;
+    min-height: 250px;
+}

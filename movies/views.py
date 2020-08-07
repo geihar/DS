@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.conf import settings
+from django.contrib.auth.models import User
 
 from .models import Movie, Actor, Genre, Rating
 from .forms import ReviewForm, RatingForm
@@ -41,11 +42,15 @@ class AddReview(View):
     def post(self, request, pk):
         form = ReviewForm(request.POST)
         movie = Movie.objects.get(id=pk)
+        print(request.POST)
+        name = User.objects.get(username=request.POST.get('name'))
         if form.is_valid():
             form = form.save(commit=False)
             if request.POST.get('parent', None):
                 form.parent_id = int(request.POST.get('parent'))
             form.movie = movie
+            print(name)
+            form.name = name
             form.save()
         return redirect(movie.get_absolute_url())
 

@@ -104,8 +104,7 @@ class MovieAdmin(TranslationAdmin):
 @admin.register(Reviews)
 class ReviewsAdmin(admin.ModelAdmin):
     list_display = ('id', 'email', 'parent', 'movie')
-    # list_display = ('movie',)
-    readonly_fields = ('name', 'email')
+    # readonly_fields = ('name', 'email')
 
 
 @admin.register(Actor)

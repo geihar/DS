@@ -121,7 +121,7 @@ class Rating(models.Model):
 
 
 class Reviews(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     text = models.TextField('Сообщение', max_length=5000)
     parent = models.ForeignKey('self', verbose_name='Родитель', on_delete=models.SET_NULL,
