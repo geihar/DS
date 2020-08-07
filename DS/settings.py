@@ -98,15 +98,16 @@ WSGI_APPLICATION = 'DS.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+#
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'movie',
-        'USER': 'movie',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": 5432,
+        "CONN_MAX_AGE": 0,
     }
 }
 
@@ -316,9 +317,9 @@ LOGIN_REDIRECT_URL = 'main_page'
 LOGIN_URL = "log"
 
 
-try:
-    from .local_settings import*
-except ImportError:
-    print("local_settings is not defined")
+# try:
+#     from .local_settings import*
+# except ImportError:
+#     print("local_settings is not defined")
 
 

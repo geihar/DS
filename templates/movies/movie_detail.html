@@ -121,6 +121,7 @@
             </p>
         </div>
         <hr>
+    {% if user.is_authenticated %}
         <div class="row">
             <div class="single-form-left">
                 <!-- contact form grid -->
@@ -163,6 +164,14 @@
                 <!--  //contact form grid ends here -->
             </div>
         </div>
+        {% else %}
+        <div class="row">
+            <p> Коментарии могут оставить только зарегестрированные пользователи, пройдите
+                <a href="{% url 'reg' %}">регистрацию</a> или
+                <a href="{% url 'log' %}">войдите</a> в свой профиль </p>
+        </div>
+    {% endif %}
+            <hr>
         {% for review in movie.get_review %}
             {% if  not review.parent %}
                 <div class="media py-5">

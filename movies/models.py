@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import date
 from django.urls import reverse
+# from users.models import User
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -120,7 +122,7 @@ class Rating(models.Model):
 
 class Reviews(models.Model):
     email = models.EmailField()
-    name = models.CharField('Имя', max_length=120)
+    name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     text = models.TextField('Сообщение', max_length=5000)
     parent = models.ForeignKey('self', verbose_name='Родитель', on_delete=models.SET_NULL,
                                blank=True, null=True, related_name='children')

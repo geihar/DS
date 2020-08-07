@@ -9,7 +9,7 @@ class UserRegForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ["username", "email", "password1", "password2"]
 
 
 class UserUpdate(forms.ModelForm):
@@ -17,15 +17,14 @@ class UserUpdate(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ["username", "email"]
 
 
 class ProfileImg(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super(ProfileImg, self).__init__(*args, **kwargs)
-        self.fields['img'].label = 'Изображение профиля'
+        self.fields["img"].label = "Изображение профиля"
 
     class Meta:
         model = Profile
-        fields = ['img']
+        fields = ["img"]

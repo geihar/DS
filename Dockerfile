@@ -10,5 +10,5 @@ WORKDIR /src
 COPY Pipfile /src/
 COPY Pipfile.lock /src/
 RUN pip install pipenv
-RUN pipenv install --system
+RUN pipenv install --system --dev
 

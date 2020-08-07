@@ -12,7 +12,7 @@
             <label for="drop" class="toggle">Menu</label>
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
-                <li class="active"><a href="{% url 'main_page' %}">Главная</a></li>
+                <li ><a href="{% url 'main_page' %}">Главная</a></li>
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-2" class="toggle">Категории <span
@@ -46,17 +46,17 @@
                                                 <span>{{ user.username }}</span>
                     {% endif %}
                 </li>
-
                 <li>
                     <form id="language_form" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select name="language"  onchange='ChangeLang()'>
+                        <input  name="next" type="hidden" value="{{ redirect_to }}">
+                        <select name="language"  onchange='ChangeLang()' style="opacity: 0.7">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                        selected{% endif %} >
+                                <option value="{{ language.code }}"
+                                        {% if language.code == LANGUAGE_CODE %}
+                                        selected{% endif %} style="opacity: 0.7">
                                     {{ language.name_local }} ({{ language.code }})
                                 </option>
                             {% endfor %}

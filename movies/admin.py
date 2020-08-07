@@ -25,7 +25,7 @@ class CategoryAdmin(TranslationAdmin):
 class ReviewInline(admin.TabularInline):
     model = Reviews
     extra = 1
-    readonly_fields = ('name', 'email')
+    readonly_fields = ('email',)
 
 
 class MoviesShotsInline(admin.TabularInline):
@@ -103,7 +103,8 @@ class MovieAdmin(TranslationAdmin):
 
 @admin.register(Reviews)
 class ReviewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'parent', 'movie')
+    list_display = ('id', 'email', 'parent', 'movie')
+    # list_display = ('movie',)
     readonly_fields = ('name', 'email')
 
 
