@@ -11,7 +11,11 @@ class ReviewForm(forms.ModelForm):
         model = Reviews
         fields = ("text", "captcha")
         widgets = {
-            "text": forms.Textarea(attrs={"class": "form-control border"})
+            "text": forms.Textarea(attrs={
+                "class": "form-control border",
+                "style": "max-height: 200px, min-height: 200px"
+            }
+            )
         }
 
 

@@ -1,9 +1,8 @@
-from django.db.models import Q
+from django.db import models
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
-from django.conf import settings
 from django.contrib.auth.models import User
 
 from .models import Movie, Actor, Genre, Rating
@@ -34,6 +33,10 @@ class MovieDetailView(GenreYear, DetailView):
         context = super().get_context_data(**kwargs)
         context["star_form"] = RatingForm()
         context["form"] = ReviewForm()
+        context["rating"] = Movie.objects.filter(draft=False).annotate(
+            middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
+        )
+        print(float(context["rating"][0].middle_star))
         return context
 
 
@@ -42,7 +45,6 @@ class AddReview(View):
     def post(self, request, pk):
         form = ReviewForm(request.POST)
         movie = Movie.objects.get(id=pk)
-        print(request.POST)
         name = User.objects.get(username=request.POST.get('name'))
         if form.is_valid():
             form = form.save(commit=False)
@@ -66,8 +68,8 @@ class FilterMoviesView(GenreYear, ListView):
 
     def get_queryset(self):
         queryset = Movie.objects.filter(
-            Q(year__in=self.request.GET.getlist("year")) |
-            Q(genres__in=self.request.GET.getlist("genre"))
+            models.Q(year__in=self.request.GET.getlist("year")) |
+            models.Q(genres__in=self.request.GET.getlist("genre"))
         ).distinct()
         return queryset
 
@@ -82,8 +84,8 @@ class JsonFilterMoviesView(ListView):
 
     def get_queryset(self):
         queryset = Movie.objects.filter(
-            Q(year__in=self.request.GET.getlist("year")) |
-            Q(genres__in=self.request.GET.getlist("genre"))
+            models.Q(year__in=self.request.GET.getlist("year")) |
+            models.Q(genres__in=self.request.GET.getlist("genre"))
         ).distinct().values("title", "tagline", "url", "poster")
         return queryset
 

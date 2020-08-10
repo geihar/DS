@@ -74,7 +74,10 @@
                                     <label for="rating{{ v }}">{{ k }}</label>
                                 {% endfor %}
                             </span>
-                            <span class="editContent">4.0</span>
+                            <span class="editContent">
+                            {% for i in rating %}
+                                {{ i.middle_star }}
+                            {% endfor %}</span>
                         </form>
                     </li>
                 </ul>

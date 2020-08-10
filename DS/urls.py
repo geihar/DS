@@ -21,7 +21,7 @@ urlpatterns += i18n_patterns(
     path('auth/', include('djoser.urls.jwt')),
     path('api/v1/', include('movies.api.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
-    path('acounts/', include('allauth.urls')),
+    # path('acounts/', include('allauth.urls')),
     path('contact/', include('contact.urls')),
     path('', include('movies.urls')),
     path('user/', include('users.urls')),
