@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.MovieViews.as_view(), name='main_page'),
     path('filter/', views.FilterMoviesView.as_view(), name='filter'),
     path('search/', views.Search.as_view(), name='search'),
+    path('star_filter', views.SearchStar.as_view(), name='star_filter'),
     path("add-rating/", views.AddStarRating.as_view(), name='add_rating'),
     path('json-filter/', views.JsonFilterMoviesView.as_view(), name='json_filter'),
     path('<slug:slug>/', views.MovieDetailView.as_view(), name='movie_detail'),

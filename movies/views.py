@@ -1,6 +1,6 @@
 from django.db import models
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.contrib.auth.models import User
@@ -36,7 +36,6 @@ class MovieDetailView(GenreYear, DetailView):
         context["rating"] = Movie.objects.filter(draft=False).annotate(
             middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
         )
-        print(float(context["rating"][0].middle_star))
         return context
 
 
@@ -51,7 +50,6 @@ class AddReview(View):
             if request.POST.get('parent', None):
                 form.parent_id = int(request.POST.get('parent'))
             form.movie = movie
-            print(name)
             form.name = name
             form.save()
         return redirect(movie.get_absolute_url())
@@ -126,3 +124,14 @@ class Search(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['q'] = f'q={self.request.GET.get("q")}&'
         return context
+
+
+class SearchStar(ListView):
+    paginate_by = 1
+
+    def get_queryset(self):
+        queryset = Movie.objects.all().annotate(
+            middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
+        ).filter(middle_star=self.request.GET.get('star'))
+        print(queryset)
+        return queryset

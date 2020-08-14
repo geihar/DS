@@ -41,47 +41,74 @@
 <!-- reviews -->
 <div class="customer-rev left-side my-4">
     <h3 class="sear-head editContent">Рейтинг</h3>
-    <ul class="w3layouts-box-list">
-        <li>
-            <a href="#">
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="editContent">5.0</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="editContent">4.0</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="editContent">3.0</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="fa fa-star-o" aria-hidden="true"></span>
-                <span class="editContent">2.0</span>
-            </a>
-        </li>
-    </ul>
+
+    <form action="{% url 'star_filter' %}" method="get" id="star_filter">
+        <ul class="w3layouts-box-list">
+
+            <li class="filter_stars" data-star="5">
+                <a href="#" data-star="5">
+                    <span class="fa fa-star" aria-hidden="true" data-star="5"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="5"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="5"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="5"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="5"></span>
+                    <span class="" id="popup_1" data-star="5">5.0</span>
+                </a>
+            </li>
+            <li class="filter_stars" data-star="4">
+                <a href="#">
+                    <span class="fa fa-star" aria-hidden="true" data-star="4"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="4"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="4"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="4"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="4"></span>
+                    <span class="editContent" data-star="4">4.0</span>
+                </a>
+            </li>
+            <li class="filter_stars" data-star="3">
+                <a href="#" data-star="3">
+                    <span class="fa fa-star" aria-hidden="true" data-star="3"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="3"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="3"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="3"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="3"></span>
+                    <span class="editContent" data-star="3">3.0</span>
+                </a>
+            </li>
+            <li class="filter_stars" data-star="2">
+                <a href="#" data-star="2">
+                    <span class="fa fa-star" aria-hidden="true" data-star="2"></span>
+                    <span class="fa fa-star" aria-hidden="true" data-star="2"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="2"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="2"></span>
+                    <span class="fa fa-star-o" aria-hidden="true" data-star="2"></span>
+                    <span class="editContent">2.0</span>
+                </a>
+            </li>
+        </ul>
+    </form>
 </div>
+
+<script>
+
+    var li = document.querySelectorAll('.filter_stars');
+      li.forEach( function(item, key){
+      item.addEventListener('click', update);
+      })
+
+    function update (event){
+        let stars = event.target.dataset.star;
+         let form = document.getElementById('star_filter')
+            form.innerHTML = '<input type="hidden" name="star" value="">';
+            form.star.value= stars
+            form.submit();
+        event.preventDefault();
+
+        {#let xhr = new XMLHttpRequest();#}
+        {#let url = 'star_filter';#}
+        {#xhr.open('GET', `${url}?star=${stars}`);#}
+        {#xhr.send();#}
+    }
+
+</script>
 {% get_last_movies count=3 %}
