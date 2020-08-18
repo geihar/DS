@@ -1,14 +1,16 @@
+{% load i18n movie_tag %}
 <div class="deal-leftmk left-side">
-    <h3 class="sear-head editContent">Последние добавленные</h3>
+    <h3 class="sear-head editContent">{% trans 'Последние добавленные' %}</h3>
     {% for movie in last_movies %}
-        <div class="special-sec1 row mt-3 editContent">
-            <div class="img-deals col-md-4">
-                <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
-            </div>
-            <div class="img-deal1 col-md-4">
-                <h3 class="editContent">{{ movie.title }}</h3>
-                <a href="{{ movie.get_absolute_url }}" class="editContent"></a>
-            </div>
+        <div class="img-deal1 col-md-4 ">
+            <a href="{{ movie.get_absolute_url }}" class="editContent">
+                <h3 class="editContent">{{ movie.title }}</h3></a>
         </div>
+        <div class="special-sec1 row mt-3 editContent">
+            <a href="{{ movie.get_absolute_url }}" class="img-deals col-md-4">
+                <img src="{{ movie.poster.url }}" class="img-fluid" alt="">
+            </a>
+        </div>
+        <hr style="max-width: 60%; margin-left: 0">
     {% endfor %}
 </div>

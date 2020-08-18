@@ -21,8 +21,13 @@ class GenreYear:
 class MovieViews(ListView, GenreYear):
 
     model = Movie
-    qs = Movie.objects.filter(draft=False)
     paginate_by = 1
+
+    def get_queryset(self):
+        queryset = Movie.objects.filter(draft=False).annotate(
+            middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
+        )
+        return queryset
 
 
 class MovieDetailView(GenreYear, DetailView):
@@ -126,12 +131,11 @@ class Search(ListView):
         return context
 
 
-class SearchStar(ListView):
+class SearchStar(ListView, GenreYear):
     paginate_by = 1
 
     def get_queryset(self):
         queryset = Movie.objects.all().annotate(
             middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
         ).filter(middle_star=self.request.GET.get('star'))
-        print(queryset)
         return queryset

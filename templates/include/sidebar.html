@@ -1,6 +1,6 @@
-{% load movie_tag %}
+{% load i18n movie_tag %}
 <div class="search-bar w3layouts-newsletter">
-    <h3 class="sear-head editContent">Поиск фильма</h3>
+    <h3 class="sear-head editContent">{% trans 'Поиск фильма' %}</h3>
     <form action="{% url 'search' %}" method="get" class="d-flex editContent">
         <input type="search" placeholder="Введите название..." name="q" class="form-control" required="">
         <button type="submit" class="btn1 btn">
@@ -11,7 +11,7 @@
 <!--preference -->
 <form action="{% url 'filter' %}" method="get" name="filter">
     <div class="left-side my-4">
-        <h3 class="sear-head editContent">Жанры</h3>
+        <h3 class="sear-head editContent">{% trans 'Жанры' %}</h3>
         <ul class="w3layouts-box-list">
             {% for genre in view.get_genres %}
                 <li class="editContent">
@@ -25,7 +25,7 @@
     <!-- discounts -->
 
     <div class="left-side">
-        <h3 class="sear-head editContent">Год</h3>
+        <h3 class="sear-head editContent">{% trans 'Год' %}</h3>
         <ul class="w3layouts-box-list">
             {% for movie in view.get_years %}
                 <li class="editContent">
@@ -35,12 +35,12 @@
             {% endfor %}
         </ul>
     </div>
-    <button type="submit">Найти</button>
+    <button type="submit">{% trans 'Найти' %}</button>
 </form>
 <!-- //discounts -->
 <!-- reviews -->
 <div class="customer-rev left-side my-4">
-    <h3 class="sear-head editContent">Рейтинг</h3>
+    <h3 class="sear-head editContent">{% trans 'Рейтинг' %}</h3>
 
     <form action="{% url 'star_filter' %}" method="get" id="star_filter">
         <ul class="w3layouts-box-list">

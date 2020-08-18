@@ -1,4 +1,5 @@
 {% extends 'movies/base.html' %}
+{% load i18n movie_tag %}
 {% block title %} {% endblock title %}
 {% block header %} bg1 {% endblock header %}
 {% block movie %}
@@ -24,28 +25,93 @@
                                 </div>
                             </div>
                             <ul class="stars">
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
+                                {% if movie.middle_star == 1 %}
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                {% elif movie.middle_star == 2 %}
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+
+
+                                {% elif movie.middle_star == 3 %}
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                {% elif movie.middle_star == 4 %}
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star-o"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                {% elif movie.middle_star == 5 %}
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                    <li><a href="#"><span class="fa fa-star"
+                                                          aria-hidden="true"></span></a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <div class="grid-img-right mt-4 text-right bg bg1" >
+        <div class="grid-img-right mt-4 text-right bg bg1">
             {% include 'include/pagination.html' %}
         </div>
     </div>
