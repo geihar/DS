@@ -1,9 +1,10 @@
 {% extends 'movies/base.html' %}
+{% load static i18n %}
 {%  load crispy_forms_tags %}
 {% block movie %}
   <div class="form-section">
-    <h2>Вы вышли из аккаунта</h2>
-  <a href="{% url 'log' %}">Войти в личный кабинет</a>
+    <h2>{% trans 'Вы вышли из аккаунта' %}</h2>
+  <a href="{% url 'log' %}">{% trans 'Войти в личный кабинет' %}</a>
 
   </div>
 {% endblock movie%}

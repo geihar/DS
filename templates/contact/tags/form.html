@@ -1,5 +1,6 @@
-<h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">Подписка</h3>
-<p class="editContent">Подписавшись на нашу рассылку, вы всегда будете получать от нас последние новости и обновления.</p>
+{% load i18n movie_tag %}
+<h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3">{% trans 'Подписка' %}</h3>
+<p class="editContent">{% trans 'Подписавшись на нашу рассылку, вы всегда будете получать от нас последние новости и обновления.' %}</p>
 <form action="{% url 'contact' %}" method="post" class="w3layouts-newsletter">
     {% csrf_token %}
     {{contact_form}}

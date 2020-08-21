@@ -1,14 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.views.generic import DetailView
-from django.views.generic.base import View
+from django.views.generic import CreateView, View
 
 from .forms import UserRegForm, UserUpdate, ProfileImg
 from movies.views import GenreYear
+from movies.models import Movie
 
 
-class Registration(DetailView, GenreYear):
+class Registration(CreateView, GenreYear):
 
     def post(self, request):
         form = UserRegForm(request.POST)

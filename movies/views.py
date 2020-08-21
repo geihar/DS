@@ -1,11 +1,11 @@
 from django.db import models
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.contrib.auth.models import User
 
-from .models import Movie, Actor, Genre, Rating
+from .models import Movie, Actor, Genre, Rating, Category
 from .forms import ReviewForm, RatingForm
 
 
@@ -34,7 +34,12 @@ class MovieDetailView(GenreYear, DetailView):
     model = Movie
     slug_field = 'url'
 
+
     def get_context_data(self, **kwargs):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        slug = self.kwargs.get(self.slug_url_kwarg)
+        print(self.request)
+        print(pk, slug)
         context = super().get_context_data(**kwargs)
         context["star_form"] = RatingForm()
         context["form"] = ReviewForm()
@@ -138,4 +143,18 @@ class SearchStar(ListView, GenreYear):
         queryset = Movie.objects.all().annotate(
             middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
         ).filter(middle_star=self.request.GET.get('star'))
+        return queryset
+
+class CategoryFilter(ListView, GenreYear):
+
+    paginate_by = 1
+    slug_url_kwarg = 'slug'
+
+
+    def get_queryset(self):
+        slug = self.kwargs.get(self.slug_url_kwarg)
+        queryset = Movie.objects.all().annotate(
+            middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
+        ).filter(category__url=slug)
+        print(queryset, slug)
         return queryset
