@@ -145,16 +145,15 @@ class SearchStar(ListView, GenreYear):
         ).filter(middle_star=self.request.GET.get('star'))
         return queryset
 
+
 class CategoryFilter(ListView, GenreYear):
 
     paginate_by = 1
     slug_url_kwarg = 'slug'
-
 
     def get_queryset(self):
         slug = self.kwargs.get(self.slug_url_kwarg)
         queryset = Movie.objects.all().annotate(
             middle_star=models.Sum(models.F('rating__star')) / models.Count(models.F('rating'))
         ).filter(category__url=slug)
-        print(queryset, slug)
         return queryset
