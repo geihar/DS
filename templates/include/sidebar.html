@@ -3,9 +3,9 @@
     <h3 class="sear-head editContent">{% trans 'Поиск фильма' %}</h3>
     <form action="{% url 'search' %}" method="get" class="d-flex editContent">
         <input type="search" placeholder="{% trans 'Введите название...' %}" name="q" class="form-control" required="">
-        <button type="submit" class="btn1 btn">
-            <span class="fa fa-search" aria-hidden="true"></span>
-        </button>
+            <button type="submit" class="btn1 btn">
+                <span class="fa fa-search" aria-hidden="true"></span>
+            </button>
     </form>
 </div>
 <!--preference -->
@@ -35,7 +35,7 @@
             {% endfor %}
         </ul>
     </div>
-    <button type="submit">{% trans 'Найти' %}</button>
+    <button     type="submit">{% trans 'Найти' %}</button>
 </form>
 <!-- //discounts -->
 <!-- reviews -->
