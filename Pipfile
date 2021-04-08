@@ -7,7 +7,7 @@ verify_ssl = true
 django-debug-toolbar = "*"
 
 [packages]
-django = "==3.0.7"
+django = "==3.0.14"
 pillow = "*"
 django-ckeditor = "*"
 django-recaptcha3 = "*"
